@@ -108,8 +108,9 @@ export default {
       return `${dateObj.getFullYear()}/${dateObj.getMonth()+1}/${dateObj.getDate()}`
     },
     curYearMonth () {
-      let tempDate = Date.parse(new Date(`${this.calendar.params.curYear}/${this.calendar.params.curMonth+1}/01`))
-      return dateTimeFormatter(tempDate, this.i18n[this.calendar.options.locale].format)
+      // let tempDate = Date.parse(new Date(`${this.calendar.params.curYear}/${this.calendar.params.curMonth+1}/01`))
+      // return dateTimeFormatter(tempDate, this.i18n[this.calendar.options.locale].format)
+      return 'test'
     },
     customColor () {
       return this.calendar.options.color
