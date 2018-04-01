@@ -616,9 +616,9 @@ var inBrowser = typeof window !== 'undefined';
       return dateObj.getFullYear() + '/' + (dateObj.getMonth() + 1) + '/' + dateObj.getDate();
     },
     curYearMonth: function curYearMonth() {
-      // let tempDate = Date.parse(new Date(`${this.calendar.params.curYear}/${this.calendar.params.curMonth+1}/01`))
+      var tempDate = Date.parse(new Date(this.calendar.params.curYear + '/' + (this.calendar.params.curMonth + 1) + '/01'));
+      return this.i18n[this.calendar.options.locale].monthNames[this.calendar.params.curMonth] + ' ' + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__tools_js__["b" /* dateTimeFormatter */])(tempDate, 'yyyy');
       // return dateTimeFormatter(tempDate, this.i18n[this.calendar.options.locale].format)
-      return 'test';
     },
     customColor: function customColor() {
       return this.calendar.options.color;
@@ -687,7 +687,7 @@ var inBrowser = typeof window !== 'undefined';
     return {
       selectedDayEvents: {
         date: 'all',
-        events: this.events || [] //default show all event
+        events: [] // this.events || []  //default show all event
       }
     };
   },
@@ -745,6 +745,7 @@ var inBrowser = typeof window !== 'undefined';
     }
   },
   created: function created() {
+    // console.log('all', this.calendarParams.curEventsDate)
     if (this.calendarParams.curEventsDate !== 'all') {
       this.handleChangeCurDay(this.calendarParams.curEventsDate);
     }
@@ -752,6 +753,7 @@ var inBrowser = typeof window !== 'undefined';
 
   methods: {
     handleChangeCurDay: function handleChangeCurDay(date) {
+      // console.log('date', date)
       var events = this.events.filter(function (event) {
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__tools_js__["a" /* isEqualDateStr */])(event.date, date);
       });
@@ -819,7 +821,7 @@ function install(Vue) {
   var inBrowser = typeof window !== 'undefined';
   var dateObj = new Date();
   var DEFAULT_OPTION = {
-    locale: 'zh', // en
+    locale: 'en', // en
     color: ' #f29543',
     className: 'selected-day',
     weekStartOn: 0 // 0 mean sunday
@@ -1049,7 +1051,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "arrow-left icon"
   }, [_vm._v(" ")])]), _vm._v(" "), _c('div', {
     staticClass: "title"
-  }, [_vm._v("test")]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.curYearMonth))]), _vm._v(" "), _c('div', {
     staticClass: "r",
     on: {
       "click": _vm.nextMonth

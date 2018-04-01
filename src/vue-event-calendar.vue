@@ -33,7 +33,7 @@ export default {
     return {
       selectedDayEvents: {
         date: 'all',
-        events: this.events || []  //default show all event
+        events: [] // this.events || []  //default show all event
       }
     }
   },
@@ -90,12 +90,14 @@ export default {
     }
   },
   created () {
+    // console.log('all', this.calendarParams.curEventsDate)
     if (this.calendarParams.curEventsDate !== 'all') {
       this.handleChangeCurDay(this.calendarParams.curEventsDate)
     }
   },
   methods: {
     handleChangeCurDay (date) {
+      // console.log('date', date)
       let events = this.events.filter(function(event) {
         return isEqualDateStr(event.date, date)
       })
