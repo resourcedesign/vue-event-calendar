@@ -136,7 +136,7 @@ export default {
     events () {
       this.selectedDayEvents = {
         date: 'all',
-        events: this.events || []
+        events: [] // this.events || []
       }
     }
   }
